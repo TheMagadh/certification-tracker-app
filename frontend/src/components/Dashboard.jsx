@@ -18,7 +18,7 @@ function Dashboard({ data }) {
 
   const flattenCerts = () => {
     return data.flatMap(user => {
-      return user.RelatedCertificationStatus?.records.map(cert => ({
+      return user.RelatedCertificationStatus?.records?.map(cert => ({
         email: user.email,
         name: user.Name,
         city: user.City,
