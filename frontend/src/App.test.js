@@ -14,8 +14,8 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-test('renders dashboard header', async () => {
+test('renders Certification Overview heading', async () => {
   render(<App />);
-  const header = await screen.findByText(/Salesforce Cert Dashboard/i);
-  expect(header).toBeInTheDocument();
+  const headingElement = await screen.findByText(/Certification Overview/i);
+  expect(headingElement).toBeInTheDocument();
 });
