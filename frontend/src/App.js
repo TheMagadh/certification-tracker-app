@@ -6,16 +6,7 @@ import StatsOverview from './components/StatsOverview';
 import UserTable from './components/UserTable';
 import ComplianceReport from './components/ComplianceReport';
 import AdvancedReports from './components/AdvancedReports';
-
-// Define roles and their mandatory certifications
-// In a real application, this data would likely come from a backend or configuration.
-const ROLES_CONFIG = {
-  'Consultant': ['Sales Cloud Consultant', 'Service Cloud Consultant', 'Platform App Builder'],
-  'Analyst': ['Administrator', 'Platform Developer I', 'Data Cloud Consultant'],
-  'Architect': ['Application Architect', 'System Architect', 'Identity and Access Management Architect'],
-  'Developer': ['Platform Developer I', 'Platform Developer II', 'JavaScript Developer I'],
-  'Admin': ['Administrator', 'Advanced Administrator'],
-};
+import SelfServiceForm from './components/SelfServiceForm';
 
 // Simulate loading PEP definition from a text file
 // In a real application, you would fetch this from a static file server or CMS.
@@ -33,7 +24,8 @@ const fetchPepDefinition = async () => {
 const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'compliance', or 'advanced-reports'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'compliance', 'advanced-reports', or 'self-service'
+  const [rolesConfig, setRolesConfig] = useState({});
   const [filters, setFilters] = useState({
     search: '',
     certName: '',
@@ -54,18 +46,7 @@ const App = () => {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const json = await res.json();
-
-      // IMPORTANT: For demonstration purposes, assigning a mock role to each user.
-      // In a real application, user roles would come from your backend data.
-      const dataWithMockRoles = json.map((user, index) => {
-        const roles = Object.keys(ROLES_CONFIG);
-        const assignedRole = roles[index % roles.length]; // Cycle through roles
-        return {
-          ...user,
-          role: assignedRole,
-        };
-      });
-      setData(dataWithMockRoles);
+      setData(json);
     } catch (err) {
       console.error("Failed to load data:", err);
       // In a real app, you might use a state variable to show an alert to the user
@@ -96,6 +77,13 @@ const App = () => {
     loadData();
   }, [loadData]);
 
+  useEffect(() => {
+    fetch('http://localhost:4000/api/roles')
+      .then(res => res.json())
+      .then(setRolesConfig)
+      .catch(() => {});
+  }, []);
+
   // Handle filter changes for the Dashboard view
   const handleDashboardFilterChange = useCallback((newFilters) => {
     setFilters(prev => ({ ...prev, ...newFilters }));
@@ -104,27 +92,26 @@ const App = () => {
   // Flatten the nested certification data into a single array
   // This memoized function ensures it only re-runs if 'data' changes
   const allCerts = useMemo(() => {
-    return data.flatMap(user => {
-      // Ensure records exist before mapping
-      return user.RelatedCertificationStatus?.records?.map(cert => ({
+    return data.flatMap(user =>
+      (user.certifications || []).map(cert => ({
         email: user.email || 'N/A',
-        name: user.Name || 'N/A',
-        city: user.City || 'N/A',
-        state: user.State || 'N/A',
-        country: user.Country || 'N/A',
-        certName: cert.ExternalCertificationTypeName || 'N/A',
-        certDate: cert.CertificationDate || 'N/A', // Use 'N/A' for missing dates
-        userId: user.Id, // Add userId to link certs back to users
-        role: user.role, // Include role for compliance checks
-      })) || []; // Return empty array if no records
-    });
+        name: 'N/A',
+        city: 'N/A',
+        state: 'N/A',
+        country: 'N/A',
+        certName: cert.name || 'N/A',
+        certDate: cert.earnedAt || 'N/A',
+        userId: user.email,
+        role: user.role,
+      }))
+    );
   }, [data]);
 
   // Filter the certifications for the Dashboard based on current filter state
   const filteredDashboardCerts = useMemo(() => {
     return allCerts.filter(cert => {
       const matchesSearch = filters.search === '' ||
-        cert.name.toLowerCase().includes(filters.search.toLowerCase()) ||
+        cert.certName.toLowerCase().includes(filters.search.toLowerCase()) ||
         cert.email.toLowerCase().includes(filters.search.toLowerCase());
 
       const matchesCert = filters.certName === '' ||
@@ -242,6 +229,13 @@ const App = () => {
             >
               Advanced Reports
             </button>
+            <button
+              onClick={() => setCurrentView('self-service')}
+              className={`px-4 py-2 rounded-lg font-semibold transition duration-300
+                ${currentView === 'self-service' ? 'bg-blue-700 text-white shadow-inner' : 'text-blue-100 hover:text-white hover:bg-blue-700'}`}
+            >
+              Self Service
+            </button>
           </div>
         </div>
       </nav>
@@ -254,6 +248,7 @@ const App = () => {
               {currentView === 'dashboard' && 'Certification Overview'}
               {currentView === 'compliance' && 'Role-Based Compliance Report'}
               {currentView === 'advanced-reports' && 'Advanced Certification Reports'}
+                {currentView === 'self-service' && 'Self Service'}
             </h2>
             <button
               onClick={refreshData}
@@ -321,13 +316,15 @@ const App = () => {
               <ComplianceReport
                 users={data} // Pass raw user data
                 allCerts={allCerts} // Pass flattened cert data
-                rolesConfig={ROLES_CONFIG}
+                rolesConfig={rolesConfig}
               />
-            ) : ( // currentView === 'advanced-reports'
+            ) : currentView === 'advanced-reports' ? (
               <AdvancedReports
                 users={data}
                 allCerts={allCerts}
               />
+            ) : (
+              <SelfServiceForm />
             )
           )}
         </div>

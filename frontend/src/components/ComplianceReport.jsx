@@ -1,15 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 
-// Define roles and their mandatory certifications
-// This ROLES_CONFIG should ideally be imported from a shared constants file or fetched from a backend
-const ROLES_CONFIG = {
-  'Consultant': ['Sales Cloud Consultant', 'Service Cloud Consultant', 'Platform App Builder'],
-  'Analyst': ['Administrator', 'Platform Developer I', 'Data Cloud Consultant'],
-  'Architect': ['Application Architect', 'System Architect', 'Identity and Access Management Architect'],
-  'Developer': ['Platform Developer I', 'Platform Developer II', 'JavaScript Developer I'],
-  'Admin': ['Administrator', 'Advanced Administrator'],
-};
-
 // Simulate loading PEP definition from a text file
 const fetchPepDefinition = async () => {
   await new Promise(resolve => setTimeout(resolve, 300));
