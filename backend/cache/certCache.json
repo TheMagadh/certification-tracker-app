@@ -1,98 +1,16 @@
 [
   {
     "email": "ankush@example.com",
-    "Name": "Ankush Kumar",
-    "City": "BEGUSARAI",
-    "State": "IN-BR",
-    "Country": "IN",
-    "MappingKey": "RSC3PHo9m/grxPUkGH8KATqvM0hexVIlw62fdbMDhvMkMSMvxmnvqHCb9+Fvll+K",
-    "RelatedCertificationStatus": {
-      "totalSize": 4,
-      "records": [
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Agentforce Specialist",
-          "CertificationDate": "May 22, 2025",
-          "RelatedCertificationType": {
-            "Image": "https://drm.my.salesforce.com/servlet/servlet.ImageServer?id=015KV00000B8Hnp&oid=00DF0000000gZsu&lastMod=1723530339000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified AI Associate",
-          "CertificationDate": "December 12, 2024",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000BEqgH&oid=00DF0000000gZsu&lastMod=1693557495000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Marketing Cloud Email Specialist",
-          "CertificationDate": "June 29, 2022",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5Mu9&oid=00DF0000000gZsu&lastMod=1617268670000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Platform Developer I",
-          "CertificationDate": "March 28, 2022",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5Mtz&oid=00DF0000000gZsu&lastMod=1617268528000"
-          }
-        }
-      ]
-    }
+    "role": "Consultant",
+    "searchString": "lccOVPDlqw3jPtvAezIqGXuhfy3XpqajC5iR2rfjXwmvBiIl4tdfh57jE9AjkaQ7",
+    "certifications": [],
+    "lastUpdated": null
   },
   {
     "email": "Sachin@example.com",
-    "Name": "Sachin Sharma",
-    "City": "Mumbai",
-    "State": "IN-MH",
-    "Country": "IN",
-    "MappingKey": "h0Sfc/LeJRo4IDKsr/vXWJBNfmIjXt7Vbk9hIiTIUZ6yo05xT2Zjw4e2QU0dxf1J",
-    "RelatedCertificationStatus": {
-      "totalSize": 6,
-      "records": [
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Data Cloud Consultant",
-          "CertificationDate": "December 27, 2024",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000BEqgM&oid=00DF0000000gZsu&lastMod=1693557540000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified AI Associate",
-          "CertificationDate": "November 24, 2024",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000BEqgH&oid=00DF0000000gZsu&lastMod=1693557495000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Marketing Cloud Developer",
-          "CertificationDate": "December 20, 2023",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5Mu3&oid=00DF0000000gZsu&lastMod=1617274584000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Marketing Cloud Consultant",
-          "CertificationDate": "March 31, 2023",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5Mtk&oid=00DF0000000gZsu&lastMod=1617268737000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Marketing Cloud Administrator",
-          "CertificationDate": "October 29, 2022",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5MuD&oid=00DF0000000gZsu&lastMod=1617267728000"
-          }
-        },
-        {
-          "ExternalCertificationTypeName": "Salesforce Certified Marketing Cloud Email Specialist",
-          "CertificationDate": "July 31, 2021",
-          "RelatedCertificationType": {
-            "Image": "https://drm.file.force.com/servlet/servlet.ImageServer?id=0153k00000A5Mu9&oid=00DF0000000gZsu&lastMod=1617268670000"
-          }
-        }
-      ]
-    }
+    "role": "Consultant",
+    "searchString": "S3cq13Nf65+CNhqhOP4aVZtf+dIYW9cGiCKw1V3sHoSmDBKW7nZwPDefa75jSclA",
+    "certifications": [],
+    "lastUpdated": null
   }
 ]
